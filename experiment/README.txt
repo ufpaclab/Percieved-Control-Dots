@@ -1,0 +1,2 @@
+Code and plugins for experiment 2 in New measures of agency from an adaptive sensorimotor task.
+Code for collecting worker information from mTurk, for the consent form, and for transferring data from subjects' computers to lab database is not included.

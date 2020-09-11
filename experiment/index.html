@@ -371,9 +371,9 @@
 
         var consentForm = {
           type: 'external-html',
-          url: ''
+          url: 'https://greyjohnsongit.github.io/PercievedControlExperiment/experiment/consentForm.html',
+          cont_btn: 'consent-button'
         }
-
 
         var end_3 = {
           type: 'html-keyboard-response',
@@ -423,6 +423,7 @@
 
         //push everything into the overall timeline
         timeline.push(fullscreen_mode);
+        timeline.push(consentForm);
         timeline.push(dot_trajectory);
         timeline.push(end_3);
         timeline.push(exitFullscreen);

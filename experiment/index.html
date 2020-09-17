@@ -14,7 +14,7 @@
     <script src="jspsych-6.0.5/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych-6.0.5/plugins/jspsych-html-button-response.js"></script>
     <script src="jspsych-6.0.5/plugins/jspsych-survey-multi-choice.js"></script>
-
+    <script src="jspsych-6.0.5/plugins/jspsych-survey-text.js"></script>
 </head>
 <body>
 </body>
@@ -50,7 +50,7 @@
                     "<p>STEP3: go back to 'System Preference', go to 'Mission Control' and click on 'Hot Corners' button in the corner of the preference panel</p>"+
                     "<p>STEP4: pull down each of the four hot corner submenus and choose '-'</p>"+
                     "<p>STEP5: come back to this page and <strong>switch to full-screen mode</strong> by selecting the green circle at the top-left corner of Chrome.</p><p>STEP6: continue to the next page.</p>"+
-                    "<br><br><br><p>Press any key to continue</p>.",
+                    "<br><br><br><p>Press any key to continue.</p>",
           on_finish: function(){document.body.style.cursor = 'none'}
         };
         timeline_dot_trajectory.push(mac_mouse_instruciton);
@@ -371,8 +371,28 @@
 
         var consentForm = {
           type: 'external-html',
-          url: 'https://greyjohnsongit.github.io/PercievedControlExperiment/experiment/consentForm.html',
+          url: 'https://ufpaclab.github.io/Consent-Forms/Active/Consent.html',
           cont_btn: 'consent-button'
+        }
+
+        var getAge = {
+          type: 'survey-text',
+          questions: [{
+            name: 'age',
+            prompt: 'What is your age?',
+            required: true,
+            columns: 3
+          }]
+        }
+
+        var getSex = {
+          type: 'survey-multi-choice',
+          questions: [{
+            name: 'sex',
+            prompt: 'What is your biological sex?',
+            options: ['Male', 'Female', 'Other'],
+            required: true
+          }]
         }
 
         var end_3 = {
@@ -424,6 +444,8 @@
         //push everything into the overall timeline
         timeline.push(fullscreen_mode);
         timeline.push(consentForm);
+        timeline.push(getAge);
+        timeline.push(getSex);
         timeline.push(dot_trajectory);
         timeline.push(end_3);
         timeline.push(exitFullscreen);
@@ -432,17 +454,7 @@
         jsPsych.init({
             timeline: timeline,
             on_finish: function(){ //Execute this when the experiment finishes
-                jsPsych.data.addProperties({
-                    workerId: workerId,
-                    assignmentId: assignmentId,
-                    hitId: hitId
-                });
-                if(saveLocally == true){
-                    jsPsych.data.get().localSave('csv', workerId + '_testSave.csv'); //Save the data locally in a .csv file
-                }
-                if(displayData == true){
-                    jsPsych.data.displayData(); //Display the data onto the browser screen
-                }
+              document.write(`<p style="position:fixed;left:50%;top:50%;transform: translate(-50%, -50%);font-family:'Open Sans', 'Arial', sans-serif;font-size: 20px;">Congrats - you’re done!  Please email the researcher at DEBUG_fake@email.com_DEBUG to receive credit on SONA.</p>`)
             }
         });
 

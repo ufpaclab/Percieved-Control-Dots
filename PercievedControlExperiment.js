@@ -366,6 +366,7 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
             repetitions: totalTrial
         };
         timeline_dot_trajectory.push(test_procedure);
+        let DotTrajectoryTrials = {timeline: timeline_dot_trajectory}
 
 
 
@@ -431,7 +432,7 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
                 GeneralInstructionsTrial, 
                 TaskBorderInformationTrial, 
                 TaskKeyInputInformationTrial,
-                timeline_dot_trajectory,
+                DotTrajectoryTrials,
                 ExperimentFinishedTrial,
                 ExitFullscreenTrial,
                 FinalSurveyTrial

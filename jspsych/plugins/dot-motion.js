@@ -354,11 +354,11 @@ jsPsych.plugins["dot-motion"] = (function(){
       var timer1 = setTimeout(function(){endFailTrial();}, 2000);
       function firstQuestion(){
         //display the question
-        display_element.innerHTML = "<p> Which dots were you better able to control? </p><p> Press Q for dot A. Press R for dot B </p>";
+        display_element.innerHTML = "<p> Which dots were you better able to control? </p><p> Press A for dot A. Press B for dot B </p>";
         //start the keyboard listener
         keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
           callback_function: secondQuestion,
-          valid_responses: ['q', 'r'],
+          valid_responses: ['a', 'b'],
           persist: false,
           allow_held_key: false
         });
@@ -377,9 +377,17 @@ jsPsych.plugins["dot-motion"] = (function(){
           jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
         }
 
+                `<p>Press 1 if the judgment is a mere guess.</p>
+                <P>Press 2 if the judgment is better than a mere guess but you are still quite unsure about it.</p>
+                <p>Press 3 if you are almost certain.</p>
+                <p>Press 4 if you have no doubt in your answer.</p>`
+
         //display the second question
-        display_element.innerHTML = "<p> How confident are you over your judgment? </p>" +
-                                    "<p> 1 2 3 4</p>";
+        display_element.innerHTML = `<p> How confident are you over your judgment? </p>
+                                    <p>1 - Guess</p>
+                                    <p>2 - Unsure</p>
+                                    <p>3 - Almost Certain</p>
+                                    <p>4 - No Doubt</p>`;
         //start the keyboard listener
         keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
           callback_function: end_trial,
@@ -422,9 +430,9 @@ jsPsych.plugins["dot-motion"] = (function(){
 
         //check the answer
         var answerChecker = false;
-        if (controlPower == 0 && response.AorB == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('q'))
+        if (controlPower == 0 && response.AorB == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('a'))
           answerChecker = true;
-        if (controlPower == 1 && response.AorB == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('r'))
+        if (controlPower == 1 && response.AorB == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('b'))
           answerChecker = true;
 
         //convert the confidence level

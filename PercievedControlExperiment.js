@@ -3,16 +3,10 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
 
     function RunExperiment(sessionID) {
         // Experiments Trials
-        let FullscreenTrial = {
-            type: 'fullscreen',
-            fullscreen_mode: true,
-            message: `
-                <p>Welcome!</p>
-                <br><br><br>
-                <p>In here we can explain our goals and what the users responsibilities are.</p>
-                <p>This entire code needs a refactor, so bear with the weird centering :)</p>
-                <p>Press this button to enter fullscreen and procede with the experiment!</p>`
-        };
+        let WelcomePage = {
+            type: 'html-keyboard-response',
+            stimulus: '<p>Welcome to the experiment! Your first task is to review the consent form on the following page.</p><p>Press any key to continue.</p>',
+        }
 
         let ConsentFormTrial = {
             type: 'external-html',
@@ -51,9 +45,6 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
                 <p>STEP4: pull down each of the four hot corner submenus and choose '-'</p>
                 <p>STEP5: come back to this page and <strong>switch to full-screen mode</strong> by selecting the green circle at the top-left corner of Chrome.</p><p>STEP6: continue to the next page.</p>
                 <br><br><br><p>Press any key to continue.</p>`,
-            on_finish: function() {
-                document.body.style.cursor = 'none'
-            }
         }
 
         let GeneralInstructionsTrial = {
@@ -87,7 +78,7 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
                 <p><strong>KEY-PRESS INSTRUCTIONS</strong></p>
                 <p>You will be asked two questions on each trial.</p>
                 <p>For the first question, you will be asked to report the label of the dot you were able to control on the current trial.</p>
-                <p>Press Q for dot A, or R for dot B</p>
+                <p>Press A for dot A, or B for dot B</p>
                 <p></p><p>For the second question, you will be asked to indicate your confidence in the choice you just made about which dot you were able to control.</p>
                 <p>Press 1 if the judgment is a mere guess.</p>
                 <P>Press 2 if the judgment is better than a mere guess but you are still quite unsure about it.</p>
@@ -95,6 +86,15 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
                 <p>Press 4 if you have no doubt in your answer.</p>
                 <br><br><p>Press any key to start the practice trials.</p>`
         }
+
+        let FullscreenTrial = {
+            type: 'fullscreen',
+            fullscreen_mode: true,
+            message: '<p>Press the button to enter fullscreen and start the practice trials<p>',
+            on_finish: function() {
+                document.body.style.cursor = 'none'
+            }
+        };
 
 
 
@@ -423,8 +423,8 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
 
         // Configure and Start Experiment
         jsPsychHandle.init({
-            timeline: [
-                FullscreenTrial, 
+            timeline: [ 
+                WelcomePage,
                 ConsentFormTrial, 
                 GetAgeTrial, 
                 GetSexTrial, 
@@ -432,6 +432,7 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
                 GeneralInstructionsTrial, 
                 TaskBorderInformationTrial, 
                 TaskKeyInputInformationTrial,
+                FullscreenTrial,
                 DotTrajectoryTrials,
                 ExperimentFinishedTrial,
                 ExitFullscreenTrial,
@@ -439,7 +440,7 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
             ],
             on_trial_finish: CreateAdaptiveUpload(sessionID, jsSheetHandle.Insert),
             on_finish: function() {
-                document.write(`<p style="position:fixed;left:50%;top:50%;transform: translate(-50%, -50%);font-family:'Open Sans', 'Arial', sans-serif;font-size: 20px;">Congrats - you’re done!  Please email the researcher at DEBUG_fake@email.com_DEBUG to receive credit on SONA.</p>`)
+                document.write(`<p style="position:fixed;left:50%;top:50%;transform: translate(-50%, -50%);font-family:'Open Sans', 'Arial', sans-serif;font-size: 20px;">Congrats - you are done!  Please email the researcher at DEBUG_fake@email.com_DEBUG to receive credit on SONA.</p>`)
             }
         })
         

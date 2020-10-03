@@ -11,10 +11,6 @@ function Insert(id, data) {
   }
   sheet.appendRow(data)
 }
- 
-function InsertBulk(id, data) {
-  data.forEach(row => Insert(id, row))
-}
 
 function GetSessionID() {
   var lock = LockService.getScriptLock()

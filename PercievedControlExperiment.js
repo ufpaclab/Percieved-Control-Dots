@@ -1,7 +1,7 @@
 function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
     jsSheetHandle.CreateSession(RunExperiment)
 
-    function RunExperiment(sessionID) {
+    function RunExperiment(session) {
         // Experiments Trials
         let WelcomePage = {
             type: 'html-keyboard-response',
@@ -438,37 +438,10 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
                 ExitFullscreenTrial,
                 FinalSurveyTrial
             ],
-            on_trial_finish: CreateAdaptiveUpload(sessionID, jsSheetHandle.Insert),
+            on_trial_finish: session.insert,
             on_finish: function() {
                 document.write(`<p style="position:fixed;left:50%;top:50%;transform: translate(-50%, -50%);font-family:'Open Sans', 'Arial', sans-serif;font-size: 20px;">Congrats - you are done!  Please email the researcher at DEBUG_fake@email.com_DEBUG to receive credit on SONA.</p>`)
             }
         })
-        
-        // Utility Functions
-        function CreateAdaptiveUpload(id, callback) {
-            let keyLookup = {}
-            let keyOrder = []
-            return function(data) {
-                let keys = Object.keys(data)
-                for (let keyIndex in keys) {
-                    let key = keys[keyIndex]
-                    if (typeof keyLookup[key] === 'undefined') {
-                        keyLookup[key] = true
-                        keyOrder.push(key)
-                    }
-                }
-                let paddedData = []
-                for (let keyIndex in keyOrder) {
-                    let key = keyOrder[keyIndex]
-                    if (typeof data[key] === 'undefined') {
-                        paddedData.push('')
-                    }
-                    else {
-                        paddedData.push(data[key])
-                    }
-                }
-                callback(id, paddedData)
-            }
-        }
     }
 }

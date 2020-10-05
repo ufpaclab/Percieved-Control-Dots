@@ -354,11 +354,11 @@ jsPsych.plugins["dot-motion"] = (function(){
       var timer1 = setTimeout(function(){endFailTrial();}, 2000);
       function firstQuestion(){
         //display the question
-        display_element.innerHTML = "<p> Which dots were you better able to control? </p><p> Press A for dot A. Press B for dot B </p>";
+        display_element.innerHTML = "<p> Which dots were you better able to control? </p><p> Press Q for dot A. Press R for dot B </p>";
         //start the keyboard listener
         keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
           callback_function: secondQuestion,
-          valid_responses: ['a', 'b'],
+          valid_responses: ['q', 'r'],
           persist: false,
           allow_held_key: false
         });

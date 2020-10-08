@@ -19,7 +19,7 @@ function GetSessionID() {
   lock.waitLock(30000)
   var documentProperties = PropertiesService.getDocumentProperties()
   var currentID = documentProperties.getProperty('sessionID')
-  if (typeof currentID === 'undefined') {
+  if (currentID == "NaN") {
     documentProperties.setProperty('sessionID', '0')
     currentID = '0'
   }

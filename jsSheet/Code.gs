@@ -1,10 +1,12 @@
-function doGet() {
-  return HtmlService.createHtmlOutputFromFile('index')
+function doGet(e) {
+  var template = HtmlService.createTemplateFromFile('index')
+  template.survey_code = e.parameter.survey_code
+  return template.evaluate()
 }
 
 function Insert(id, data) {
   var ss = SpreadsheetApp.getActiveSpreadsheet()
-  var sheetName = id.toString()
+  var sheetName = 'Results'
   var sheet = ss.getSheetByName(sheetName)
   if (sheet == null) {
     sheet = ss.insertSheet(sheetName)

@@ -1,5 +1,5 @@
 const jsSheet = {
-  CreateSession: function(onSuccess = console.log, onFailure = console.error) {
+  CreateSession: function(onSuccess, onFailure = console.error) {
     google.script.run.withFailureHandler(onFailure).withSuccessHandler(CreateLocalSession).GetSessionID()
 
     function CreateLocalSession(id) {
@@ -12,12 +12,12 @@ const jsSheet = {
               keyLookup.set(key, true)
           }
 
-          let paddedData = []
+          let paddedData = [id]
           for (const key of keyLookup.keys()) {
               paddedData.push(data.hasOwnProperty(key) ? data[key] : '')
           }
 
-          google.script.run.withFailureHandler(onFailure).withSuccessHandler(onSuccess).Insert(id, paddedData)
+          google.script.run.withFailureHandler(onFailure).Insert(id, paddedData)
         }
       })
     }

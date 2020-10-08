@@ -3,9 +3,8 @@
 	<head>
 		<title>Agency task</title>
 		
-		<!-- Run Deployed -->
+		<!-- Repo -->
 		<base id="base-url" href="https://ufpaclab.github.io/Percieved-Control-Dots/" target="_blank">
-		<!--base id="base-url" href="./" target="_blank"-->
 
 		<!-- jsPsych -->
 		<script src="jspsych/jspsych.js"></script>
@@ -31,7 +30,7 @@
         <script src="PercievedControlExperiment.js"></script>
 
 		<script>
-			PercievedControlExperiment(jsSheet, jsPsych)
+			PercievedControlExperiment(jsSheet, jsPsych, <?= survey_code ?>)
 		</script>
 	</head>
 	<body>

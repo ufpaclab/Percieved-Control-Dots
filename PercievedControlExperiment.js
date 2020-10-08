@@ -1,7 +1,10 @@
-function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
+function PercievedControlExperiment(jsSheetHandle, jsPsychHandle, survey_code) {
     jsSheetHandle.CreateSession(RunExperiment)
 
     function RunExperiment(session) {
+        // Constants
+        const SONA_URL = `https://ufl.sona-systems.com/webstudy_credit.aspx?experiment_id=145&credit_token=9419af749b2c4e79b6a43900be9aec70&survey_code=${survey_code}`
+
         // Experiments Trials
         let WelcomePage = {
             type: 'html-keyboard-response',
@@ -394,18 +397,16 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
             type: 'survey-multi-choice',
             questions: function() {
                 let prompts = [
-                    `My beliefs about myself often conflict with on another.`,
-                    `On one day I might have one opinion of myself and on another another day I might have a different opinion.`,
-                    `I spend a lot of time wondering about what kind of person I really am.`,
-                    `Sometimes I feel that I am not really the person that I appear to be.`,
-                    `When I think about thek ind of person I have been in the past. I'm not sure what I was really like.`,
-                    `I seldom experience conflict between the different aspects of my personality.`,
-                    `Sometimes I think I know other people better than I know myself.`,
-                    `My beliefs about myself seem to change very frequently.`,
-                    `If I were asked to describe my personality, my description might end up being different from one day to another day.`,
-                    `Even if I wanted to, I don't think I could tell someone what I'm really like.`,
-                    `In general, I have a clear sense of who I am and what I am.`,
-                    `It is often hard for me to make up my mind about things because I don't really know what I want.`
+                    `Right now, I am confident that who I think I am is who I really am.`
+                    `Right now, I feel like I have a clear idea of who I am.`
+                    `Right now, I feel conflicted about who I am.`
+                    `Right now, I am not sure I know who I really am.`
+                    `Right now, I feel like all of my self aspects are one consistent whole.`
+                    `Right now, I do not think I can confidently can tell someone what I am like.`
+                    `Right now, I feel like I am the person that I give the impression of being.`
+                    `Right now, I feel like some parts of me do not align with the others.`
+                    `Right now, I feel like it takes time to think about what makes me who I am.`
+                    `Right now, I can quickly tell another person the traits that I possess.`
                 ]
                 let options = ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']
                 let questions = []
@@ -439,9 +440,7 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle) {
                 FinalSurveyTrial
             ],
             on_trial_finish: session.insert,
-            on_finish: function() {
-                document.write(`<p style="position:fixed;left:50%;top:50%;transform: translate(-50%, -50%);font-family:'Open Sans', 'Arial', sans-serif;font-size: 20px;">Congrats - you are done!  Please email the researcher at DEBUG_fake@email.com_DEBUG to receive credit on SONA.</p>`)
-            }
+            on_finish: function() { window.top.location.href = SONA_URL }
         })
     }
 }

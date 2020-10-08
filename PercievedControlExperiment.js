@@ -215,7 +215,7 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle, survey_code) {
         var stepsize = [firstSize, firstSize/ratioOfSteps, secondSize, secondSize/ratioOfSteps, thirdSize, thirdSize/ratioOfSteps, fourthSize, fourthSize/ratioOfSteps]; //sets of step size
         var staircaseA = {controlLevel: maxcontrol, trialNum: 0, reverseNum: 0, lastChioce: true, stepsizeDown: stepsize[0], stepsizeUp: stepsize[1]};
         var staircaseB = {controlLevel: maxcontrol, trialNum: 0, reverseNum: 0, lastChioce: true, stepsizeDown: stepsize[0], stepsizeUp: stepsize[1]};
-        var trialMax = 2;
+        var trialMax = 100;
         var totalTrial = 2 * trialMax;
 
         /*******************************************************

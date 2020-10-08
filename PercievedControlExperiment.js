@@ -397,15 +397,15 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle, survey_code) {
             type: 'survey-multi-choice',
             questions: function() {
                 let prompts = [
-                    `Right now, I am confident that who I think I am is who I really am.`
-                    `Right now, I feel like I have a clear idea of who I am.`
-                    `Right now, I feel conflicted about who I am.`
-                    `Right now, I am not sure I know who I really am.`
-                    `Right now, I feel like all of my self aspects are one consistent whole.`
-                    `Right now, I do not think I can confidently can tell someone what I am like.`
-                    `Right now, I feel like I am the person that I give the impression of being.`
-                    `Right now, I feel like some parts of me do not align with the others.`
-                    `Right now, I feel like it takes time to think about what makes me who I am.`
+                    `Right now, I am confident that who I think I am is who I really am.`,
+                    `Right now, I feel like I have a clear idea of who I am.`,
+                    `Right now, I feel conflicted about who I am.`,
+                    `Right now, I am not sure I know who I really am.`,
+                    `Right now, I feel like all of my self aspects are one consistent whole.`,
+                    `Right now, I do not think I can confidently can tell someone what I am like.`,
+                    `Right now, I feel like I am the person that I give the impression of being.`,
+                    `Right now, I feel like some parts of me do not align with the others.`,
+                    `Right now, I feel like it takes time to think about what makes me who I am.`,
                     `Right now, I can quickly tell another person the traits that I possess.`
                 ]
                 let options = ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']

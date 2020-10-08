@@ -430,9 +430,9 @@ jsPsych.plugins["dot-motion"] = (function(){
 
         //check the answer
         var answerChecker = false;
-        if (controlPower == 0 && response.AorB == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('a'))
+        if (controlPower == 0 && response.AorB == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('q'))
           answerChecker = true;
-        if (controlPower == 1 && response.AorB == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('b'))
+        if (controlPower == 1 && response.AorB == jsPsych.pluginAPI.convertKeyCharacterToKeyCode('r'))
           answerChecker = true;
 
         //convert the confidence level

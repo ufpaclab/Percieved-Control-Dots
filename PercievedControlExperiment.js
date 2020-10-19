@@ -377,20 +377,12 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle, survey_code) {
 
 
 
-        var ExperimentFinishedTrial = {
-            type: 'html-keyboard-response',
-            stimulus: `
-            <p>The experiment is finished.</p>
-            <p>Thank you for your participation! We appreciate your contribution to our research.</p>
-            <p>Press any key to exit.</p>`,
-            on_finish: function() {
-                document.body.style.cursor = 'default'
-            },
-        }
-
         let ExitFullscreenTrial = {
             type: "fullscreen",
             fullscreen_mode: false,
+            on_finish: function() {
+                document.body.style.cursor = 'default'
+            }
         }
 
         let FinalSurveyTrial = {
@@ -422,6 +414,14 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle, survey_code) {
             }()
         }
 
+        var ExperimentFinishedTrial = {
+            type: 'html-keyboard-response',
+            stimulus: `
+            <p>The experiment is finished.</p>
+            <p>Thank you for your participation! We appreciate your contribution to our research.</p>
+            <p>Press any key to exit.</p>`
+        }
+
         // Configure and Start Experiment
         jsPsychHandle.init({
             timeline: [ 
@@ -435,9 +435,9 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle, survey_code) {
                 TaskKeyInputInformationTrial,
                 FullscreenTrial,
                 DotTrajectoryTrials,
-                ExperimentFinishedTrial,
                 ExitFullscreenTrial,
-                FinalSurveyTrial
+                FinalSurveyTrial,
+                ExperimentFinishedTrial
             ],
             on_trial_finish: session.insert,
             on_finish: function() { window.top.location.href = SONA_URL }

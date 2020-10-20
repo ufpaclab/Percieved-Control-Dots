@@ -38,8 +38,6 @@ function Insert(id, data) {
   }
   scriptProperties.setProperty("keyCount", keyCount.toString())
   
-  lock.releaseLock()
-  
   var ss = SpreadsheetApp.getActiveSpreadsheet()
   var sheetName = 'Results'
   var sheet = ss.getSheetByName(sheetName)
@@ -47,8 +45,9 @@ function Insert(id, data) {
     sheet = ss.insertSheet(sheetName)
   }
   sheet.appendRow(paddedData)
+  lock.releaseLock()
 }
-  
+
 function ReadOrCreateProperty_(properties, key, defaultValue) {
   var value = properties.getProperty(key)
   if (value == null) {

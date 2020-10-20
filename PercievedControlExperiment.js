@@ -48,6 +48,9 @@ function PercievedControlExperiment(jsSheetHandle, jsPsychHandle, survey_code) {
                 <p>STEP4: pull down each of the four hot corner submenus and choose '-'</p>
                 <p>STEP5: come back to this page and <strong>switch to full-screen mode</strong> by selecting the green circle at the top-left corner of Chrome.</p><p>STEP6: continue to the next page.</p>
                 <br><br><br><p>Press any key to continue.</p>`,
+            on_finish: () => {
+                jsPsychHandle.data.get().addToLast({osAndBrowser: navigator.appVersion})
+            }
         }
 
         let GeneralInstructionsTrial = {
